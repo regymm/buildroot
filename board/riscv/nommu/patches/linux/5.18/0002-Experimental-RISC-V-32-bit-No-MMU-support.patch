@@ -1,4 +1,4 @@
-From cb4e826917e0898a8a0da1f64848e9d2a4eb2052 Mon Sep 17 00:00:00 2001
+From 79973bbbce2d5feed0c080370f1446cd14b3de84 Mon Sep 17 00:00:00 2001
 From: regymm <31496626+regymm@users.noreply.github.com>
 Date: Mon, 1 Aug 2022 15:39:45 +0900
 Subject: [PATCH] Experimental RISC-V 32-bit No MMU support
@@ -6,8 +6,8 @@ Subject: [PATCH] Experimental RISC-V 32-bit No MMU support
 ---
  arch/riscv/Kconfig                            |    5 +-
  .../riscv32_nommu_virt_minimal_defconfig      | 1278 +++++++++++++++++
- arch/riscv/include/uapi/asm/unistd.h          |    5 +-
- 3 files changed, 1283 insertions(+), 5 deletions(-)
+ arch/riscv/include/uapi/asm/unistd.h          |    7 +-
+ 3 files changed, 1285 insertions(+), 5 deletions(-)
  create mode 100644 arch/riscv/configs/riscv32_nommu_virt_minimal_defconfig
 
 diff --git a/arch/riscv/Kconfig b/arch/riscv/Kconfig
@@ -1318,20 +1318,22 @@ index 000000000..c6d4144b0
 +# end of Kernel Testing and Coverage
 +# end of Kernel hacking
 diff --git a/arch/riscv/include/uapi/asm/unistd.h b/arch/riscv/include/uapi/asm/unistd.h
-index 8062996c2..97b09cbff 100644
+index 8062996c2..986980bd8 100644
 --- a/arch/riscv/include/uapi/asm/unistd.h
 +++ b/arch/riscv/include/uapi/asm/unistd.h
-@@ -15,10 +15,11 @@
+@@ -15,10 +15,13 @@
   * along with this program.  If not, see <https://www.gnu.org/licenses/>.
   */
  
 -#ifdef __LP64__
  #define __ARCH_WANT_NEW_STAT
-+#define __ARCH_WANT_STAT64
  #define __ARCH_WANT_SET_GET_RLIMIT
 -#endif /* __LP64__ */
 +
++#ifdef __LP32__
++#define __ARCH_WANT_STAT64
 +#define __ARCH_WANT_TIME32_SYSCALLS
++#endif /* __LP32__ */
  
  #define __ARCH_WANT_SYS_CLONE3
  
