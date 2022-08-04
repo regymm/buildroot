@@ -1330,10 +1330,10 @@ index 8062996c2..986980bd8 100644
  #define __ARCH_WANT_SET_GET_RLIMIT
 -#endif /* __LP64__ */
 +
-+#ifdef __LP32__
++#ifndef __LP64__
 +#define __ARCH_WANT_STAT64
 +#define __ARCH_WANT_TIME32_SYSCALLS
-+#endif /* __LP32__ */
++#endif /* __LP64__ */
  
  #define __ARCH_WANT_SYS_CLONE3
  
