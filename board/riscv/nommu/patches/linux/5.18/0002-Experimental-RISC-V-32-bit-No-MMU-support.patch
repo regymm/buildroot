@@ -1,14 +1,14 @@
-From c63b0358c6707a1418b11340d1bdf41b262c60c1 Mon Sep 17 00:00:00 2001
+From 700b2f0ce37140cc0455aa3a8c55e068d8f03e14 Mon Sep 17 00:00:00 2001
 From: regymm <31496626+regymm@users.noreply.github.com>
 Date: Mon, 1 Aug 2022 15:39:45 +0900
 Subject: [PATCH] Experimental RISC-V 32-bit No MMU support
 
 ---
- arch/riscv/Kconfig                            |    5 +-
- .../riscv32_nommu_virt_minimal_defconfig      | 1278 +++++++++++++++++
- arch/riscv/include/uapi/asm/unistd.h          |    6 +-
- 3 files changed, 1285 insertions(+), 4 deletions(-)
- create mode 100644 arch/riscv/configs/riscv32_nommu_virt_minimal_defconfig
+ arch/riscv/Kconfig                           |    5 +-
+ arch/riscv/configs/nommu_rv32_virt_defconfig | 1278 ++++++++++++++++++
+ arch/riscv/include/uapi/asm/unistd.h         |    5 +-
+ 3 files changed, 1284 insertions(+), 4 deletions(-)
+ create mode 100644 arch/riscv/configs/nommu_rv32_virt_defconfig
 
 diff --git a/arch/riscv/Kconfig b/arch/riscv/Kconfig
 index 00fd9c548..b650adfda 100644
@@ -33,11 +33,11 @@ index 00fd9c548..b650adfda 100644
  
  config ARCH_RV64I
  	bool "RV64I"
-diff --git a/arch/riscv/configs/riscv32_nommu_virt_minimal_defconfig b/arch/riscv/configs/riscv32_nommu_virt_minimal_defconfig
+diff --git a/arch/riscv/configs/nommu_rv32_virt_defconfig b/arch/riscv/configs/nommu_rv32_virt_defconfig
 new file mode 100644
-index 000000000..c6d4144b0
+index 000000000..377dc28f5
 --- /dev/null
-+++ b/arch/riscv/configs/riscv32_nommu_virt_minimal_defconfig
++++ b/arch/riscv/configs/nommu_rv32_virt_defconfig
 @@ -0,0 +1,1278 @@
 +#
 +# Automatically generated file; DO NOT EDIT.
@@ -341,7 +341,7 @@ index 000000000..c6d4144b0
 +CONFIG_PAGE_SIZE_LESS_THAN_64KB=y
 +CONFIG_PAGE_SIZE_LESS_THAN_256KB=y
 +CONFIG_CLONE_BACKWARDS=y
-+# CONFIG_COMPAT_32BIT_TIME is not set
++CONFIG_COMPAT_32BIT_TIME=y
 +CONFIG_ARCH_OPTIONAL_KERNEL_RWX_DEFAULT=y
 +
 +#
@@ -1318,10 +1318,10 @@ index 000000000..c6d4144b0
 +# end of Kernel Testing and Coverage
 +# end of Kernel hacking
 diff --git a/arch/riscv/include/uapi/asm/unistd.h b/arch/riscv/include/uapi/asm/unistd.h
-index 8062996c2..ee042cf14 100644
+index 8062996c2..906dec9f7 100644
 --- a/arch/riscv/include/uapi/asm/unistd.h
 +++ b/arch/riscv/include/uapi/asm/unistd.h
-@@ -15,9 +15,13 @@
+@@ -15,9 +15,12 @@
   * along with this program.  If not, see <https://www.gnu.org/licenses/>.
   */
  
@@ -1332,7 +1332,6 @@ index 8062996c2..ee042cf14 100644
 +#ifndef __LP64__
 +#define __ARCH_WANT_STAT64
 +#define __ARCH_WANT_TIME32_SYSCALLS
-+#define CONFIG_COMPAT_32BIT_TIME
  #endif /* __LP64__ */
  
  #define __ARCH_WANT_SYS_CLONE3
