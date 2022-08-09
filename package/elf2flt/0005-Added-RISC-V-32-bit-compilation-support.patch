@@ -1,8 +1,15 @@
 From 6055525082d13bd4337ccc033e0302b49dd0c1dd Mon Sep 17 00:00:00 2001
-From: regymm <31496626+regymm@users.noreply.github.com>
+From: Yimin Gu <ustcymgu@gmail.com>
 Date: Sun, 31 Jul 2022 22:30:45 +0900
-Subject: [PATCH] Added RISC-V 32-bit compilation support
+Subject: [PATCH] elf2flt: add RISC-V 32-bit compilation support
 
+Let elf2flt compile for RISC-V 32-bit targets. With these changes, the 
+uclibc toolchain and busybox can work fine for rv32 no MMU systems with 
+no noticable problem. 
+
+There's no change of code except macros and definitions. 
+
+Signed-off-by: Yimin Gu <ustcymgu@gmail.com>
 ---
  elf2flt.c    | 6 ++++--
  ld-elf2flt.c | 2 +-

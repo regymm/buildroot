@@ -1,8 +1,16 @@
 From 537b2ef6350fdf7604d59bc2a50388cb98045d7f Mon Sep 17 00:00:00 2001
-From: regymm <31496626+regymm@users.noreply.github.com>
+From: Yimin Gu <ustcymgu@gmail.com>
 Date: Mon, 1 Aug 2022 15:22:40 +0900
-Subject: [PATCH] RISC-V 32-bit support
+Subject: [PATCH] uclibc: RISC-V 32-bit support
 
+Added 32-bit RISC-V support. With these changes, elf2flt patch
+6055525082d1, and kernel patch 700b2f0ce371, no MMU rv32 buildroot
+system can work without any noticable problem. 
+
+There's no substantial code change except definations and config
+options. 
+
+Signed-off-by: Yimin Gu <ustcymgu@gmail.com>
 ---
  Rules.mak                                  |  2 ++
  extra/Configs/Config.in                    |  9 +++++++++

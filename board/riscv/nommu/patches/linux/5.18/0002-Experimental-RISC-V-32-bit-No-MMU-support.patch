@@ -1,8 +1,21 @@
 From 700b2f0ce37140cc0455aa3a8c55e068d8f03e14 Mon Sep 17 00:00:00 2001
-From: regymm <31496626+regymm@users.noreply.github.com>
+From: Yimin Gu <ustcymgu@gmail.com>
 Date: Mon, 1 Aug 2022 15:39:45 +0900
 Subject: [PATCH] Experimental RISC-V 32-bit No MMU support
 
+Currently the kernel doesn't support 32-bit RISC-V without MMU, but
+this configuration can work with relatively minor changes on 
+toolchains, and might worth to have official support. 
+
+To comply with current uclibc, macros __ARCH_WANT_STAT64 and 
+__ARCH_WANT_TIME32_SYSCALLS are defined. CONFIG_COMPAT_32BIT_TIME also 
+has to be turned on. 
+
+Since 32-bit RISC-V no MMU devices are probably FPGA-based softcores, 
+only the mininum required instruction set options are turned on. FPU 
+and compressed instructions are not used. 
+
+Signed-off-by: Yimin Gu <ustcymgu@gmail.com>
 ---
  arch/riscv/Kconfig                           |    5 +-
  arch/riscv/configs/nommu_rv32_virt_defconfig | 1278 ++++++++++++++++++
