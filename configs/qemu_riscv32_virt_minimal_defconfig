@@ -1,5 +1,7 @@
 # Architecture
 BR2_riscv=y
+BR2_riscv_custom=y
+BR2_RISCV_ISA_CUSTOM_RVM=y
 BR2_RISCV_32=y
 
 # System
@@ -30,3 +32,5 @@ BR2_TARGET_OPENSBI_PLAT="generic"
 # host-qemu for gitlab testing
 BR2_PACKAGE_HOST_QEMU=y
 BR2_PACKAGE_HOST_QEMU_SYSTEM_MODE=y
+
+BR2_TOOLCHAIN_BUILDROOT_GLIBC=y
